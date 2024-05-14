@@ -1,0 +1,4 @@
+# config/parameters.yaml
+parameters:
+    # Other parameters
+    kernel.debug: true # Or false, depending on your environment
