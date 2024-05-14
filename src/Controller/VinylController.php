@@ -3,8 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\VinylMix;
-use App\Repository\VinylMixRepository as RepositoryVinylMixRepository;
-use App\Service\VinylMixRepository;
+use App\Repository\VinylMixRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,8 +13,8 @@ use function Symfony\Component\String\u;
 class VinylController extends AbstractController
 {
     public function __construct(
-        private bool $isDebug,
-        private RepositoryVinylMixRepository $mixRepository
+        private bool $isDebug
+        
     )
     {}
 
@@ -44,7 +43,7 @@ class VinylController extends AbstractController
 
         $mixRepository = $entityManager->getRepository(VinylMix::class);
 
-        $mixes = $mixRepository->findAll();
+        $mixes = $mixRepository->findBy([], ['votes' => 'DESC']);
         
 
         return $this->render('vinyl/browse.html.twig', [
